@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/heroes/{heroId}/missions")
+@RequestMapping("/heroes/{heroId}/missions")
 @RequiredArgsConstructor
 public class MissionController {
 

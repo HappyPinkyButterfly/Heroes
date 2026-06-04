@@ -1,5 +1,7 @@
 package com.heroes.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,9 +33,11 @@ public class Hero {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
+    @JsonIgnoreProperties({"heroes", "password"})
     private User user;
 
     @OneToMany(mappedBy = "hero")
+    @JsonManagedReference
     private List<Mission> missions = new ArrayList<>();
 
     @ManyToMany
@@ -42,5 +46,6 @@ public class Hero {
             joinColumns = @JoinColumn(name = "hero_id"),
             inverseJoinColumns = @JoinColumn(name = "power_id")
     )
+    @JsonManagedReference
     private Set<Power> powers = new HashSet<>();
 }

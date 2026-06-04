@@ -1,5 +1,6 @@
 package com.heroes.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,5 +24,6 @@ public class Power {
     private String name;
 
     @ManyToMany(mappedBy = "powers")
+    @JsonBackReference
     private Set<Hero> heroes = new HashSet<>();
 }

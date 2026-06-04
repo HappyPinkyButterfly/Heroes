@@ -1,10 +1,11 @@
 package com.heroes.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Getter
@@ -24,10 +25,11 @@ public class Mission {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hero_id", nullable = false)
+    @JsonBackReference
     private Hero hero;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"heroes", "password"})
     private User user;
-
 }
