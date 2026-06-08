@@ -11,7 +11,7 @@ export class HeroService {
   private readonly url = `${environment.url}/heroes`;
 
   getHeroes(): Observable<Hero[]> {
-    return this.http.get<Hero[]>(`${this.url}/heroes`);
+    return this.http.get<Hero[]>(`${this.url}`);
   }
 
   getHeroById(id: number): Observable<Hero> {

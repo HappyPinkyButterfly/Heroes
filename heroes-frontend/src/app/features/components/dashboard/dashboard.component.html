@@ -1,0 +1,20 @@
+<h2>Tour of Heroes</h2>
+@if(heroes.length === 0) {
+  <p>No data available</p>
+}
+@else{
+  <ul>
+    @for (hero of heroes; track hero.id) {
+      <li>
+        <a [routerLink]="['/heroes', hero.id]">{{ hero.name }}</a>
+      </li>
+    }
+  </ul>
+}
+
+<div class="p-3">
+  <a routerLink="/heroes" class="ml-3">See all heroes →</a>
+</div>
+
+
+

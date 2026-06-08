@@ -1,0 +1,49 @@
+<div class="container">
+  <a routerLink="/heroes" class="btn btn-link ps-0 mb-3">← Back to list</a>
+
+  @if (loading) {
+    <div class="spinner-border" role="status"></div>
+  } @else if (error) {
+    <div class="alert alert-danger">{{ error }}</div>
+  } @else if (hero) {
+
+    <!-- Hero info -->
+    <div class="card mb-4">
+      <div class="card-body">
+        <h2 class="card-title">{{ hero.name }}</h2>
+        <p class="card-text">{{ hero.description }}</p>
+        @if (hero.status) {
+          <span class="badge bg-secondary">{{ hero.status }}</span>
+        }
+      </div>
+    </div>
+
+    <h4 class="mb-3">Powers</h4>
+    @if (!hero.powers || hero.powers.length === 0) {
+      <p class="text-muted">No powers.</p>
+    } @else {
+      <div class="d-flex flex-wrap gap-2 mb-4">
+        @for (power of hero.powers; track power.id) {
+          <span class="badge bg-primary">{{ power.name }}</span>
+        }
+      </div>
+    }
+
+    <!-- Missions -->
+    <h4 class="mb-3">Missions</h4>
+    @if (missions.length === 0) {
+      <p class="text-muted">No missions yet.</p>
+    } @else {
+      <ul class="list-group">
+        @for (mission of missions; track mission.id) {
+          <li class="list-group-item">
+            <strong>{{ mission.title }}</strong>
+            @if (mission.description) {
+              <p class="mb-0 text-muted">{{ mission.description }}</p>
+            }
+          </li>
+        }
+      </ul>
+    }
+  }
+</div>

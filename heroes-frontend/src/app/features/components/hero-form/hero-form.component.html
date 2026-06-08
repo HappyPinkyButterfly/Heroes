@@ -1,0 +1,70 @@
+<div class="container">
+  <a routerLink="/heroes" class="btn btn-link ps-0 mb-3">← Back to list</a>
+
+  <h2 class="mb-4">New Hero</h2>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="card">
+    <div class="card-body">
+
+      <!-- Name -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Name *</label>
+        <input
+          id="name"
+          type="text"
+          class="form-control"
+          formControlName="name"
+          placeholder="e.g. Iron Man"
+        />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <div class="text-danger small mt-1">Name is required.</div>
+        }
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          rows="3"
+          formControlName="description"
+          placeholder="Short description..."
+        ></textarea>
+      </div>
+
+      <!-- Status -->
+      <div class="mb-3">
+        <label for="status" class="form-label">Status *</label>
+        <select id="status" class="form-select" formControlName="status">
+          <option value="active">active</option>
+          <option value="inactive">inactive</option>
+        </select>
+      </div>
+
+      <!-- userId — začasno, dokler ni JWT -->
+      <div class="mb-3">
+        <label for="userId" class="form-label">User ID *</label>
+        <input
+          id="userId"
+          type="text"
+          class="form-control"
+          formControlName="userId"
+          placeholder="UUID from users table"
+        />
+        @if (form.controls.userId.invalid && form.controls.userId.touched) {
+          <div class="text-danger small mt-1">User ID is required.</div>
+        }
+      </div>
+
+      <!-- Powers — kasneje multi-select -->
+      <!-- <div class="mb-3" formControlName="powers">...</div> -->
+
+      <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Save hero</button>
+        <a routerLink="/heroes" class="btn btn-outline-secondary">Cancel</a>
+      </div>
+
+    </div>
+  </form>
+</div>
